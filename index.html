@@ -231,7 +231,7 @@
             animation-delay: 0.8s;
         }
 
-        /* --- SECTION 2: TUJUAN --- */
+        /* --- SECTION 2: TUJUAN (GRID LAYOUT) --- */
         .tujuan-container {
             padding: 100px 5% 120px 5%;
             background-color: var(--off-white);
@@ -255,15 +255,18 @@
 
         .tujuan-label {
             color: var(--brown);
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 800;
             margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--terracotta);
         }
 
         .tujuan-heading {
-            color: #D35D6E;
-            font-size: 34px;
-            font-weight: 700;
+            color: var(--maroon);
+            font-size: 36px;
+            font-weight: 800;
             line-height: 1.35;
         }
 
@@ -306,18 +309,18 @@
 
         .card-title {
             color: var(--brown);
-            font-size: 21px;
+            font-size: 20px;
             font-weight: 700;
+            line-height: 1.4;
         }
 
         .card-desc {
             color: #555555;
             font-size: 15px;
             line-height: 1.7;
-            text-align: justify;
         }
 
-        /* --- SECTION 3: EDUKASI --- */
+        /* --- SECTION 3: EDUKASI (TEXT + BOX LAYOUT) --- */
         .edukasi-container {
             padding: 100px 5% 120px 5%;
             background-color: var(--beige);
@@ -375,7 +378,7 @@
         .edukasi-content p {
             font-size: 16px;
             line-height: 1.8;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             text-align: justify;
         }
 
@@ -388,15 +391,16 @@
 
         .edukasi-box {
             width: 100%;
-            height: 400px;
+            height: 430px;
             background-color: var(--cream);
             border-radius: 16px;
-            border: 1px dashed rgba(216, 207, 197, 0.6);
+            border: 1px dashed rgba(216, 207, 197, 0.8);
             display: flex;
             align-items: center;
             justify-content: center;
             color: #C56A4A;
             font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         /* --- SECTION 4: FOOTER --- */
@@ -406,6 +410,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
+            z-index: 2;
         }
 
         .footer-wrapper {
@@ -616,29 +622,29 @@
     <div class="tujuan-container" id="tujuan-section">
         <div class="tujuan-wrapper">
             <div class="tujuan-header reveal">
-                <h3 class="tujuan-label">Tujuan</h3>
-                <h2 class="tujuan-heading">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+                <h3 class="tujuan-label">Tujuan Utama</h3>
+                <h2 class="tujuan-heading">Peta Risiko Skala Persil</h2>
             </div>
             <div class="tujuan-grid">
                 <div class="tujuan-card reveal" style="transition-delay: 0.1s;">
-                    <div class="card-icon">🌋</div>
-                    <h3 class="card-title">Gempa Bumi</h3>
-                    <p class="card-desc">Dampak guncangan akibat pergerakan sesar aktif di sekitar kawasan studi yang berpotensi menyimpan energi gempa dan merusak struktur infrastruktur permukiman.</p>
+                    <div class="card-icon">🗺️</div>
+                    <h3 class="card-title">Pemetaan Skala 1:5.000</h3>
+                    <p class="card-desc">Menghasilkan peta risiko bencana berskala besar agar setiap unit lahan atau bangunan dapat diidentifikasi tingkat risikonya secara spesifik (site-specific risk).</p>
                 </div>
                 <div class="tujuan-card reveal" style="transition-delay: 0.2s;">
-                    <div class="card-icon">🌊</div>
-                    <h3 class="card-title">Banjir</h3>
-                    <p class="card-desc">Tingkat kerentanan wilayah dataran rendah akibat curah hujan ekstrem, perubahan tata guna lahan (alih fungsi resapan), serta fenomena penurunan muka tanah.</p>
+                    <div class="card-icon">⚙️</div>
+                    <h3 class="card-title">Integrasi Multi-Hazard</h3>
+                    <p class="card-desc">Menggabungkan tiga jenis ancaman utama secara sekaligus: gempa bumi, banjir, dan tanah longsor ke dalam satu sistem analisis keruangan terpadu.</p>
                 </div>
                 <div class="tujuan-card reveal" style="transition-delay: 0.3s;">
-                    <div class="card-icon">🪵</div>
-                    <h3 class="card-title">Tanah Longsor</h3>
-                    <p class="card-desc">Potensi ketidakstabilan struktur tanah pada kawasan berlereng yang tersusun oleh lapisan sedimen belum terkompaksi saat terjadinya infiltrasi curah hujan tinggi.</p>
+                    <div class="card-icon">🎯</div>
+                    <h3 class="card-title">Analisis Tingkat Mikro</h3>
+                    <p class="card-desc">Menyediakan acuan analisis risiko untuk pemangku kepentingan (Pemerintah Kota Bandung & BPBD) guna merencanakan penataan dan mitigasi yang tepat sasaran.</p>
                 </div>
                 <div class="tujuan-card reveal" style="transition-delay: 0.4s;">
-                    <div class="card-icon">🔥</div>
-                    <h3 class="card-title">Letusan Gunung</h3>
-                    <p class="card-desc">Peristiwa yang terjadi akibat endapan magma di dalam perut bumi yang didorong keluar. Mitigasi difokuskan pada kawasan rawan bencana gunung berapi.</p>
+                    <div class="card-icon">🛡️</div>
+                    <h3 class="card-title">Peningkatan Kesiapsiagaan</h3>
+                    <p class="card-desc">Menghasilkan informasi berbasis spasial yang mudah diakses sebagai bahan edukasi publik untuk memperkuat kapasitas masyarakat menghadapi potensi bencana.</p>
                 </div>
             </div>
         </div>
@@ -650,11 +656,14 @@
             <div class="edukasi-content reveal">
                 <h3 class="edukasi-heading-lg">Edukasi</h3>
                 <h2 class="edukasi-heading-md">Kebencanaan</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                <div><button class="btn-terracotta">Pelajari Mitigasi</button></div>
+                <p>Kota Bandung memiliki topografi unik berupa cekungan intramontane yang dikelilingi pegunungan vulkanik. Hal ini menjadikannya sangat rentan terhadap bencana geologi maupun hidrometeorologi.</p>
+                <p>Di utara, keberadaan <b>Sesar Lembang</b> aktif menyimpan potensi bahaya gempa bumi. Sementara di bagian tengah dan selatan, morfologi cekungan ditambah tingginya curah hujan memicu genangan <b>banjir</b>, serta kondisi lereng yang didominasi endapan muda memicu potensi <b>tanah longsor</b>.</p>
+                <div><button class="btn-terracotta">Pelajari Potensi</button></div>
             </div>
             <div class="edukasi-visual reveal" style="transition-delay: 0.2s;">
-                <div class="edukasi-box">[ Area Konten / Ilustrasi Edukasi ]</div>
+                <div class="edukasi-box">
+                    [ Area Visualisasi / Peta Potensi Sesar Lembang ]
+                </div>
             </div>
         </div>
     </div>
