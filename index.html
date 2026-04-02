@@ -452,7 +452,7 @@
 
         .social-icons {
             display: flex;
-            flex-direction: row; /* Diubah menjadi row agar sejajar horizontal */
+            flex-direction: row; 
             gap: 15px;
         }
 
@@ -470,20 +470,23 @@
 
         .footer-profile {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 15px;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
         }
 
-        .profile-title {
-            font-weight: 700;
-            color: var(--brown);
-            font-size: 15px;
+        .profile-pic {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: #D69B32; 
+            border: 1px solid var(--brown);
         }
 
         .profile-text {
             font-size: 13px;
             color: var(--brown);
+            max-width: 250px;
             line-height: 1.6;
         }
 
@@ -583,12 +586,12 @@
     <div class="navbar">
         <div class="nav-left">
             <div class="logo-icon"></div>
-            <div class="nav-title">Tim Capstone</div>
+            <div class="nav-title">Nama Tim</div>
         </div>
         <div class="nav-links">
             <a href="#" class="active-link">Beranda</a>
-            <a href="#tujuan-section">Analisis</a>
-            <a href="#edukasi-section">Urgensi</a>
+            <a href="#tujuan-section">Tujuan</a>
+            <a href="#edukasi-section">Edukasi</a>
             <a href="#">WebGIS</a>
             <a href="#tim-section">Tim</a>
         </div>
@@ -597,7 +600,7 @@
     <div class="hero-container">
         <div class="hero-wrapper">
             <div class="hero-text">
-                <h1>Penyusunan Peta Risiko<br>Bencana Berketelitian<br>Tinggi di Kota Bekasi</h1>
+                <h1>Penyusunan Peta Risiko<br>Bencana Berketelitian<br>Tinggi di Kota Bandung</h1>
                 <p>Platform WebGIS ini menyajikan informasi tingkat risiko bencana yang dihitung dan dipetakan hingga unit terkecil (persil) dengan skala 1:5.000. Sistem ini mengintegrasikan komponen bahaya, kerentanan, dan kapasitas guna mendukung mitigasi wilayah yang presisi dan tepat sasaran.</p>
                 <div><button class="btn-terracotta">Eksplorasi Peta</button></div>
             </div>
@@ -613,8 +616,8 @@
     <div class="tujuan-container" id="tujuan-section">
         <div class="tujuan-wrapper">
             <div class="tujuan-header reveal">
-                <h3 class="tujuan-label">Fokus Kajian</h3>
-                <h2 class="tujuan-heading">Identifikasi & Analisis Ancaman Multi-Hazard</h2>
+                <h3 class="tujuan-label">Tujuan</h3>
+                <h2 class="tujuan-heading">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
             </div>
             <div class="tujuan-grid">
                 <div class="tujuan-card reveal" style="transition-delay: 0.1s;">
@@ -633,9 +636,9 @@
                     <p class="card-desc">Potensi ketidakstabilan struktur tanah pada kawasan berlereng yang tersusun oleh lapisan sedimen belum terkompaksi saat terjadinya infiltrasi curah hujan tinggi.</p>
                 </div>
                 <div class="tujuan-card reveal" style="transition-delay: 0.4s;">
-                    <div class="card-icon">🗺️</div>
-                    <h3 class="card-title">Skala Persil (1:5.000)</h3>
-                    <p class="card-desc">Pemetaan risiko tidak lagi digeneralisasi berskala makro, melainkan merinci tingkat kelas risiko (rendah hingga tinggi) secara presisi langsung pada setiap bidang tanah.</p>
+                    <div class="card-icon">🔥</div>
+                    <h3 class="card-title">Letusan Gunung</h3>
+                    <p class="card-desc">Peristiwa yang terjadi akibat endapan magma di dalam perut bumi yang didorong keluar. Mitigasi difokuskan pada kawasan rawan bencana gunung berapi.</p>
                 </div>
             </div>
         </div>
@@ -645,14 +648,13 @@
         <div class="edukasi-bg-wave"></div>
         <div class="edukasi-wrapper">
             <div class="edukasi-content reveal">
-                <h3 class="edukasi-heading-lg">Analisis Finansial</h3>
-                <h2 class="edukasi-heading-md">Urgensi Mitigasi Bencana</h2>
-                <p>Penyediaan peta risiko bencana tingkat mikro sangat krusial. Berdasarkan hasil kajian Cost-Benefit Analysis (CBA) pada rancangan proyek ini, nilai Benefit Cost Ratio (BCR) mencapai <b>18.161,42</b>.</p>
-                <p>Hal ini mengindikasikan bahwa setiap investasi yang dialokasikan untuk penanggulangan dan mitigasi berpotensi memberikan manfaat penghematan ekonomi dan fisik hingga belasan ribu kali lipat dari ancaman kerugian multi-hazard di masa depan.</p>
-                <div><button class="btn-terracotta">Pelajari Data</button></div>
+                <h3 class="edukasi-heading-lg">Edukasi</h3>
+                <h2 class="edukasi-heading-md">Kebencanaan</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <div><button class="btn-terracotta">Pelajari Mitigasi</button></div>
             </div>
             <div class="edukasi-visual reveal" style="transition-delay: 0.2s;">
-                <div class="edukasi-box">[ Area Konten / Visualisasi Grafik CBA ]</div>
+                <div class="edukasi-box">[ Area Konten / Ilustrasi Edukasi ]</div>
             </div>
         </div>
     </div>
@@ -673,14 +675,8 @@
                 </div>
 
                 <div class="footer-profile">
-                    <p class="profile-title">Tim Capstone Design Project:</p>
-                    <p class="profile-text">
-                        1. Syalala Loovy (15122008)<br>
-                        2. Raihan Hady Permana (15122060)<br>
-                        3. Varina Erawati Martina (15122087)<br>
-                        4. Aura Nisa Arianti (15122111)<br>
-                        5. Luthfi Aulia Hakim (15122119)
-                    </p>
+                    <div class="profile-pic"></div>
+                    <p class="profile-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </div>
             </div>
 
