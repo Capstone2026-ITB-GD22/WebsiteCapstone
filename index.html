@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desain WebGIS - Capstone</title>
+    <title>Desain WebGIS - Capstone Interaktif</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -18,33 +18,39 @@
         }
 
         body {
-            /* Warna latar belakang cream/beige yang sama persis dengan gambar */
             background-color: #F4EBE1; 
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
         }
 
         /* --- NAVBAR --- */
         .navbar {
-            /* Warna merah gelap (maroon) khas desainmu */
             background-color: #5C1924; 
             height: 90px;
             display: flex;
             align-items: center;
             padding: 0 60px;
             color: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
         }
 
-        /* Bagian Logo dan Nama Tim di Kiri */
         .nav-left {
             display: flex;
             align-items: center;
             gap: 15px;
             width: 30%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
         }
 
-        /* Replikasi logo bulat (awan & perbukitan) murni dengan CSS */
+        .nav-left:hover {
+            transform: scale(1.02);
+        }
+
         .logo-icon {
             width: 55px;
             height: 55px;
@@ -54,6 +60,7 @@
             display: flex;
             justify-content: center;
             overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
         }
 
         .logo-icon::before {
@@ -72,7 +79,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Menu Navigasi di Tengah-Kanan */
         .nav-links {
             display: flex;
             gap: 80px;
@@ -84,13 +90,26 @@
             text-decoration: none;
             font-size: 18px;
             font-weight: 700;
+            position: relative;
+            padding-bottom: 5px;
         }
 
-        /* Menu aktif (Beranda memiliki garis bawah tipis di gambar) */
-        .active-link {
-            text-decoration: underline !important;
-            text-underline-offset: 5px;
-            text-decoration-thickness: 2px;
+        /* Efek Hover Garis Bawah Navigasi */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: #F4EBE1;
+            transition: width 0.3s ease-in-out;
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active-link::after {
+            width: 100%;
         }
 
         /* --- MAIN CONTENT (HERO) --- */
@@ -112,7 +131,6 @@
         .hero-text {
             flex: 1;
             padding-right: 50px;
-            /* Garis vertikal pemisah yang persis ada di tengah */
             border-right: 2px solid #D8CFC5; 
             display: flex;
             flex-direction: column;
@@ -120,12 +138,16 @@
         }
 
         .hero-text h1 {
-            /* Warna teks judul kemerahan */
             color: #8C404E; 
             font-size: 38px;
             font-weight: 700;
             line-height: 1.4;
             margin-bottom: 25px;
+            /* Setup Animasi */
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation-delay: 0.2s;
         }
 
         .hero-text p {
@@ -133,6 +155,11 @@
             font-size: 19px;
             line-height: 1.6;
             text-align: justify;
+            /* Setup Animasi */
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation-delay: 0.4s;
         }
 
         /* Kolom Kanan (Ilustrasi & Tagline) */
@@ -143,6 +170,16 @@
             align-items: center;
             justify-content: center;
             padding-left: 50px;
+            perspective: 1000px; /* Untuk efek 3D tilt */
+        }
+
+        .illustration-wrapper {
+            /* Setup Animasi */
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation-delay: 0.6s;
+            position: relative;
         }
 
         .illustration {
@@ -150,16 +187,45 @@
             height: 320px;
             border-radius: 50%;
             object-fit: cover;
-            /* Memberikan garis luar hitam tipis seperti di gambar */
             border: 1px solid #111; 
             margin-bottom: 25px;
+            /* Efek mengambang terus-menerus */
+            animation: float 6s ease-in-out infinite;
+            /* Transisi untuk efek 3D JS */
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .illustration:hover {
+            box-shadow: 0 20px 40px rgba(140, 64, 78, 0.3);
         }
 
         .tagline {
-            /* Warna coklat gelap untuk tagline */
             color: #2F1A15; 
             font-size: 36px;
             font-weight: 700;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation-delay: 0.8s;
+        }
+
+        /* --- KEYFRAMES ANIMASI --- */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
         }
     </style>
 </head>
@@ -191,13 +257,52 @@
                 </p>
             </div>
 
-            <div class="hero-visual">
-                <img src="https://via.placeholder.com/320/D69B32/2F1A15?text=Gambar+Ilustrasi" alt="Ilustrasi Geometris" class="illustration">
+            <div class="hero-visual" id="visual-area">
+                <div class="illustration-wrapper">
+                    <img src="https://via.placeholder.com/320/D69B32/2F1A15?text=Gambar+Ilustrasi" alt="Ilustrasi Geometris" class="illustration" id="interactive-img">
+                </div>
                 <div class="tagline">Tagline</div>
             </div>
 
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const visualArea = document.getElementById('visual-area');
+            const img = document.getElementById('interactive-img');
+
+            // Saat mouse bergerak di atas area kanan
+            visualArea.addEventListener('mousemove', (e) => {
+                const rect = visualArea.getBoundingClientRect();
+                
+                // Menghitung posisi kursor relatif terhadap tengah area
+                const x = e.clientX - rect.left - (rect.width / 2);
+                const y = e.clientY - rect.top - (rect.height / 2);
+
+                // Mengubah posisi X dan Y menjadi sudut rotasi 3D (angka 20 adalah intensitas miring)
+                const rotateX = -(y / rect.height) * 30;
+                const rotateY = (x / rect.width) * 30;
+
+                // Menerapkan rotasi ke gambar, digabung dengan translateY dari CSS float
+                img.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+                
+                // Menghentikan animasi float bawaan CSS sementara mouse digerakkan
+                img.style.animation = 'none';
+            });
+
+            // Saat mouse meninggalkan area
+            visualArea.addEventListener('mouseleave', () => {
+                // Mengembalikan posisi ke semula
+                img.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+                
+                // Mengaktifkan kembali animasi float CSS setelah sedikit delay
+                setTimeout(() => {
+                    img.style.animation = 'float 6s ease-in-out infinite';
+                }, 300);
+            });
+        });
+    </script>
 
 </body>
 </html>
