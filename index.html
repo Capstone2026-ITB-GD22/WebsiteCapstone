@@ -68,26 +68,12 @@
 
         .nav-left:hover { transform: scale(1.02); }
 
-        .logo-icon {
-            width: 55px;
+        /* Pengaturan untuk gambar logo PNG */
+        .logo-img {
             height: 55px;
-            border-radius: 50%;
-            background: linear-gradient(to bottom, #D7F2FA 55%, #A3C940 55%, #6A911C 100%);
-            position: relative;
-            display: flex;
-            justify-content: center;
-            overflow: hidden;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
-        }
-
-        .logo-icon::before {
-            content: '';
-            position: absolute;
-            top: 14px;
-            width: 24px;
-            height: 10px;
-            background-color: white;
-            border-radius: 10px;
+            width: auto;
+            object-fit: contain;
+            /* Tambahkan border-radius: 50%; di sini jika ingin logonya membulat secara paksa */
         }
 
         .nav-title {
@@ -352,7 +338,7 @@
             width: 100%;
             display: flex;
             gap: 60px;
-            align-items: center; /* Diubah agar center vertikal */
+            align-items: center; 
             z-index: 2;
         }
 
@@ -516,7 +502,6 @@
             background-color: var(--off-white);
         }
 
-        /* Grid Artikel dalam Pop-up */
         .article-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -780,8 +765,8 @@
 
     <div class="navbar">
         <div class="nav-left">
-            <div class="logo-icon"></div>
-            <div class="nav-title">PARIKSA</div>
+            <img src="LOGO.png" alt="Logo Tim" class="logo-img">
+            <div class="nav-title">Nama Tim</div>
         </div>
         <div class="nav-links">
             <a href="#" class="active-link">Beranda</a>
@@ -803,7 +788,7 @@
                 <div class="illustration-wrapper">
                     <img src="https://via.placeholder.com/310x310/D69B32/2F1A15?text=Gambar+Anjing" alt="Ilustrasi" class="illustration" id="interactive-img">
                 </div>
-                <div class="tagline">We cannot stop hazards, but we can arm ourselves with knowledge!</div>
+                <div class="tagline">Mitigasi Presisi</div>
             </div>
         </div>
     </div>
@@ -868,7 +853,6 @@
             </div>
             <div class="modal-body">
                 <div class="article-grid">
-                    
                     <div class="article-card">
                         <img src="https://via.placeholder.com/400x200/D35D6E/FFF?text=Ilustrasi+Gempa" alt="Gempa Bumi" class="article-img">
                         <div class="article-content">
@@ -878,7 +862,6 @@
                             <a href="link-artikel-1.html" target="_blank" class="article-link">Baca Artikel ↗</a>
                         </div>
                     </div>
-
                     <div class="article-card">
                         <img src="https://via.placeholder.com/400x200/1A5276/FFF?text=Ilustrasi+Banjir" alt="Banjir" class="article-img">
                         <div class="article-content">
@@ -888,7 +871,6 @@
                             <a href="link-artikel-2.html" target="_blank" class="article-link">Baca Artikel ↗</a>
                         </div>
                     </div>
-
                     <div class="article-card">
                         <img src="https://via.placeholder.com/400x200/E2A76F/FFF?text=Ilustrasi+Longsor" alt="Longsor" class="article-img">
                         <div class="article-content">
@@ -898,7 +880,6 @@
                             <a href="link-artikel-3.html" target="_blank" class="article-link">Baca Artikel ↗</a>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -937,13 +918,12 @@
     </div>
 
     <script>
-        // --- LOGIKA POP-UP MODAL EDUKASI ---
         const modal = document.getElementById('edukasiModal');
         const body = document.body;
 
         function openModal() {
             modal.classList.add('active');
-            body.classList.add('modal-open'); // Mencegah background di-scroll
+            body.classList.add('modal-open'); 
         }
 
         function closeModal() {
@@ -951,14 +931,12 @@
             body.classList.remove('modal-open');
         }
 
-        // Menutup pop-up jika pengguna mengklik area luar kotak putih (overlay hitam)
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 closeModal();
             }
         });
 
-        // --- EFEK 3D PADA HERO & SCROLL REVEAL ---
         document.addEventListener('DOMContentLoaded', () => {
             const visualArea = document.getElementById('visual-area');
             const img = document.getElementById('interactive-img');
