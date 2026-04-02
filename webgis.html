@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peta WebGIS - Capstone</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* Pengaturan Warna Dasar */
+        :root {
+            --maroon: #6B1E2D;
+            --beige: #F5E9DA;
+            --cream: #FFF8F0;
+            --terracotta: #C56A4A;
+            --brown: #2F1B16;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--beige);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--brown);
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background-color: var(--maroon);
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            color: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+        }
+
+        .logo-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom, #D7F2FA 55%, #A3C940 55%, #6A911C 100%);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: 14px;
+            width: 24px;
+            height: 10px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        .nav-title {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--cream);
+            transition: width 0.3s ease-in-out;
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        /* --- AREA WEBGIS KOSONG --- */
+        .webgis-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .webgis-placeholder {
+            width: 100%;
+            max-width: 1200px;
+            height: 70vh; /* Tinggi sementara untuk ruang peta */
+            background-color: var(--cream);
+            border: 2px dashed rgba(47, 27, 22, 0.3);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: rgba(47, 27, 22, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="nav-left">
+            <div class="logo-icon"></div>
+            <div class="nav-title">Nama Tim</div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Beranda</a>
+            <a href="index.html#tujuan-section">Tujuan</a>
+            <a href="index.html#edukasi-section">Edukasi</a>
+            <a href="#" class="active-link" style="border-bottom: 3px solid #FFF8F0;">WebGIS</a>
+            <a href="index.html#tim-section">Tim</a>
+        </div>
+    </div>
+
+    <div class="webgis-container">
+        <div class="webgis-placeholder">
+            [ Area Peta WebGIS Akan Ditampilkan Di Sini ]
+        </div>
+    </div>
+
+</body>
+</html>
