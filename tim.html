@@ -58,31 +58,16 @@
             cursor: pointer;
         }
 
-        .logo-icon {
-            width: 55px;
+        .logo-img {
             height: 55px;
-            border-radius: 50%;
-            background: linear-gradient(to bottom, #D7F2FA 55%, #A3C940 55%, #6A911C 100%);
-            position: relative;
-            display: flex;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .logo-icon::before {
-            content: '';
-            position: absolute;
-            top: 14px;
-            width: 24px;
-            height: 10px;
-            background-color: white;
-            border-radius: 10px;
+            width: auto;
+            object-fit: contain;
         }
 
         .nav-title {
             font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+            font-weight: 800;
+            letter-spacing: 1px;
         }
 
         .nav-links {
@@ -113,94 +98,169 @@
 
         .nav-links a:hover::after { width: 100%; }
 
-        /* --- SECTION TIM KAMI --- */
+        /* --- SECTION TIM (AESTHETIC GLASSMORPHISM) --- */
         .tim-container {
-            flex: 1; /* Mengisi ruang sisa agar footer tetap di bawah */
+            flex: 1;
             padding: 80px 5% 120px 5%;
-            background-color: var(--off-white);
+            /* Latar belakang dengan gradien radial yang lembut */
+            background: radial-gradient(circle at top right, #FFF8F0 0%, var(--off-white) 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .tim-header {
+        /* Elemen Dekoratif Lingkaran Latar Belakang */
+        .tim-container::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: rgba(197, 106, 74, 0.05); /* Terracotta sangat transparan */
+            border-radius: 50%;
+            filter: blur(50px);
+            z-index: 0;
+        }
+        .tim-container::after {
+            content: '';
+            position: absolute;
+            bottom: 100px;
+            right: -150px;
+            width: 500px;
+            height: 500px;
+            background: rgba(107, 30, 45, 0.04); /* Maroon sangat transparan */
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+        }
+
+        .section-title {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
+            z-index: 1;
         }
 
-        .tim-label {
+        .section-title h3 {
             color: var(--terracotta);
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             margin-bottom: 10px;
         }
 
-        .tim-heading {
+        .section-title h2 {
             color: var(--maroon);
-            font-size: 36px;
+            font-size: 38px;
             font-weight: 800;
         }
 
-        .tim-grid {
+        /* Grid Profil */
+        .profile-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 40px;
+            gap: 35px;
             max-width: 1100px;
+            margin-bottom: 80px; /* Jarak antara Dosen dan Mahasiswa */
+            z-index: 1;
         }
 
-        .tim-card {
-            background-color: var(--cream);
+        /* Kartu Profil Glassmorphism */
+        .profile-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px); /* Efek kaca (kusam) */
+            -webkit-backdrop-filter: blur(12px);
             width: 280px;
-            padding: 40px 20px;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.03);
-            border: 1px solid rgba(216, 207, 197, 0.4);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            border-radius: 24px;
+            padding: 40px 25px;
             text-align: center;
-            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .tim-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(107, 30, 45, 0.15);
-            border-color: rgba(107, 30, 45, 0.3);
+        /* Garis Warna Aksen di Atas Kartu */
+        .profile-card.dosen::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 6px;
+            background: linear-gradient(90deg, #D69B32, var(--terracotta));
+        }
+        .profile-card.mahasiswa::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 6px;
+            background: linear-gradient(90deg, var(--terracotta), var(--maroon));
         }
 
-        .tim-avatar {
-            width: 110px;
-            height: 110px;
+        .profile-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 45px rgba(107, 30, 45, 0.08);
+            border-color: rgba(197, 106, 74, 0.3);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Avatar / Placeholder Foto */
+        .avatar {
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--terracotta), var(--maroon));
-            color: white;
-            font-size: 36px;
-            font-weight: 700;
+            margin: 0 auto 20px auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
-            border: 5px solid var(--cream);
-            box-shadow: 0 5px 15px rgba(107, 30, 45, 0.2);
-            /* Jika ada foto, tambahkan properti: background-image: url('foto.jpg'); background-size: cover; */
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 4px solid white;
+            transition: transform 0.4s ease;
+            /* Jika sudah punya foto, tambahkan properti: background-image: url('foto.jpg'); background-size: cover; */
+        }
+        .profile-card:hover .avatar {
+            transform: scale(1.05) rotate(5deg);
         }
 
-        .tim-name {
-            color: var(--brown);
-            font-size: 20px;
+        .avatar.dosen { background: linear-gradient(135deg, #E2A76F, var(--terracotta)); }
+        .avatar.mahasiswa { background: linear-gradient(135deg, var(--terracotta), var(--maroon)); }
+
+        .profile-role {
+            font-size: 12px;
             font-weight: 800;
-            margin-bottom: 5px;
-            line-height: 1.3;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+        .profile-role.dosen {
+            color: var(--brown);
+            background-color: rgba(226, 167, 111, 0.2);
+        }
+        .profile-role.mahasiswa {
+            color: var(--maroon);
+            background-color: rgba(107, 30, 45, 0.1);
         }
 
-        .tim-nim {
-            color: var(--terracotta);
-            font-size: 15px;
-            font-weight: 600;
-            letter-spacing: 1px;
+        .profile-name {
+            color: var(--brown);
+            font-size: 18px;
+            font-weight: 800;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .profile-detail {
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
         }
 
         /* --- FOOTER --- */
@@ -211,6 +271,8 @@
             flex-direction: column;
             align-items: center;
             border-top: 1px solid rgba(47, 27, 22, 0.1);
+            position: relative;
+            z-index: 2;
         }
 
         .footer-wrapper {
@@ -372,8 +434,8 @@
 
     <div class="navbar">
         <div class="nav-left">
-            <div class="logo-icon"></div>
-            <div class="nav-title">Nama Tim</div>
+            <img src="LOGO.png" alt="Logo Tim" class="logo-img">
+            <div class="nav-title">PARIKSA</div>
         </div>
         <div class="nav-links">
             <a href="index.html">Beranda</a>
@@ -385,45 +447,78 @@
     </div>
 
     <div class="tim-container">
-        <div class="tim-header reveal">
-            <h3 class="tim-label">Capstone Design Project</h3>
-            <h2 class="tim-heading">Tim Penyusun</h2>
+        
+        <div class="section-title reveal">
+            <h3>Bimbingan & Arahan</h3>
+            <h2>Dosen Pembimbing</h2>
         </div>
 
-        <div class="tim-grid">
-            <div class="tim-card reveal" style="animation-delay: 0.1s;">
-                <div class="tim-avatar">SL</div>
-                <h3 class="tim-name">Syalala Loovy</h3>
-                <p class="tim-nim">NIM: 15122008</p>
+        <div class="profile-grid">
+            <div class="profile-card dosen reveal" style="animation-delay: 0.1s;">
+                <div class="avatar dosen">HA</div>
+                <span class="profile-role dosen">Pembimbing Utama</span>
+                <h3 class="profile-name">Dr. Heri Andreas,<br>S.T., M.T.</h3>
+                <p class="profile-detail">NIP: 1234567890</p> </div>
+            
+            <div class="profile-card dosen reveal" style="animation-delay: 0.2s;">
+                <div class="avatar dosen">MT</div>
+                <span class="profile-role dosen">Pembimbing Pendamping</span>
+                <h3 class="profile-name">Dr. Madam Taqiyya,<br>S.Si., M.Sc.</h3>
+                <p class="profile-detail">NIP: 1234567890</p>
+            </div>
+
+            <div class="profile-card dosen reveal" style="animation-delay: 0.3s;">
+                <div class="avatar dosen">DS</div>
+                <span class="profile-role dosen">Pembimbing Pendamping</span>
+                <h3 class="profile-name">Dr. Ir. Dina Anggreni Sarsito, M.T.</h3>
+                <p class="profile-detail">NIP: 1234567890</p>
+            </div>
+        </div>
+
+        <div class="section-title reveal" style="animation-delay: 0.4s;">
+            <h3>Pelaksana Capstone</h3>
+            <h2>Tim Mahasiswa</h2>
+        </div>
+
+        <div class="profile-grid">
+            <div class="profile-card mahasiswa reveal" style="animation-delay: 0.5s;">
+                <div class="avatar mahasiswa">SL</div>
+                <span class="profile-role mahasiswa">Peneliti</span>
+                <h3 class="profile-name">Syalala Loovy</h3>
+                <p class="profile-detail">NIM: 15122008</p>
             </div>
             
-            <div class="tim-card reveal" style="animation-delay: 0.2s;">
-                <div class="tim-avatar">RH</div>
-                <h3 class="tim-name">Raihan Hady<br>Permana</h3>
-                <p class="tim-nim">NIM: 15122060</p>
+            <div class="profile-card mahasiswa reveal" style="animation-delay: 0.6s;">
+                <div class="avatar mahasiswa">RH</div>
+                <span class="profile-role mahasiswa">Peneliti</span>
+                <h3 class="profile-name">Raihan Hady<br>Permana</h3>
+                <p class="profile-detail">NIM: 15122060</p>
             </div>
 
-            <div class="tim-card reveal" style="animation-delay: 0.3s;">
-                <div class="tim-avatar">VM</div>
-                <h3 class="tim-name">Varina Erawati<br>Martina</h3>
-                <p class="tim-nim">NIM: 15122087</p>
+            <div class="profile-card mahasiswa reveal" style="animation-delay: 0.7s;">
+                <div class="avatar mahasiswa">VM</div>
+                <span class="profile-role mahasiswa">Peneliti</span>
+                <h3 class="profile-name">Varina Erawati<br>Martina</h3>
+                <p class="profile-detail">NIM: 15122087</p>
             </div>
 
-            <div class="tim-card reveal" style="animation-delay: 0.4s;">
-                <div class="tim-avatar">AA</div>
-                <h3 class="tim-name">Aura Nisa<br>Arianti</h3>
-                <p class="tim-nim">NIM: 15122111</p>
+            <div class="profile-card mahasiswa reveal" style="animation-delay: 0.8s;">
+                <div class="avatar mahasiswa">AA</div>
+                <span class="profile-role mahasiswa">Peneliti</span>
+                <h3 class="profile-name">Aura Nisa<br>Arianti</h3>
+                <p class="profile-detail">NIM: 15122111</p>
             </div>
 
-            <div class="tim-card reveal" style="animation-delay: 0.5s;">
-                <div class="tim-avatar">LH</div>
-                <h3 class="tim-name">Luthfi Aulia<br>Hakim</h3>
-                <p class="tim-nim">NIM: 15122119</p>
+            <div class="profile-card mahasiswa reveal" style="animation-delay: 0.9s;">
+                <div class="avatar mahasiswa">LH</div>
+                <span class="profile-role mahasiswa">Peneliti</span>
+                <h3 class="profile-name">Luthfi Aulia<br>Hakim</h3>
+                <p class="profile-detail">NIM: 15122119</p>
             </div>
         </div>
     </div>
 
-    <div class="footer-container reveal" style="animation-delay: 0.6s;">
+    <div class="footer-container reveal" style="animation-delay: 1s;">
         <div class="footer-wrapper">
             <div class="footer-left">
                 <div class="footer-brand">
@@ -444,7 +539,6 @@
             <div class="footer-right">
                 <h3>Program Studi Teknik Geodesi dan Geomatika</h3>
                 <p>Fakultas Ilmu dan Teknologi Kebumian<br>Institut Teknologi Bandung, Labtek IX-C Jl. Ganesa No.10, Lebak Siliwangi, Coblong, Bandung City, West Java 40132</p>
-                
                 <div class="map-container">
                     <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=107.6065%2C-6.8935%2C107.6135%2C-6.8885&amp;layer=mapnik" style="border:none;"></iframe>
                 </div>
