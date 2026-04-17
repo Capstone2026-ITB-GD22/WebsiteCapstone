@@ -57,31 +57,17 @@
             cursor: pointer;
         }
 
-        .logo-icon {
-            width: 55px;
+        /* Pengaturan ukuran logo gambar PNG */
+        .logo-img {
             height: 55px;
-            border-radius: 50%;
-            background: linear-gradient(to bottom, #D7F2FA 55%, #A3C940 55%, #6A911C 100%);
-            position: relative;
-            display: flex;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .logo-icon::before {
-            content: '';
-            position: absolute;
-            top: 14px;
-            width: 24px;
-            height: 10px;
-            background-color: white;
-            border-radius: 10px;
+            width: auto;
+            object-fit: contain;
         }
 
         .nav-title {
             font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+            font-weight: 800; /* Dipertebal sedikit agar lebih tegas */
+            letter-spacing: 1px; /* Spasi antar huruf dilebarkan sedikit */
         }
 
         .nav-links {
@@ -172,7 +158,8 @@
             font-size: 15px;
         }
 
-        .layer-option input[type="checkbox"] {
+        .layer-option input[type="checkbox"],
+        .layer-option input[type="radio"] {
             margin-right: 12px;
             width: 18px;
             height: 18px;
@@ -229,8 +216,8 @@
 
     <div class="navbar">
         <div class="nav-left">
-            <div class="logo-icon"></div>
-            <div class="nav-title">Nama Tim</div>
+            <img src="LOGO.png" alt="Logo Tim" class="logo-img">
+            <div class="nav-title">PARIKSA</div>
         </div>
         <div class="nav-links">
             <a href="index.html">Beranda</a>
@@ -301,24 +288,20 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     
     <script>
-        // 1. INISIALISASI PETA
-        // Mengarahkan tampilan awal peta ke koordinat Kota Bandung dengan zoom level 13
+        // 1. INISIALISASI PETA (Koordinat Kota Bandung)
         const map = L.map('map').setView([-6.9147, 107.6098], 13);
 
         // 2. DEFINISI BASEMAP (Peta Dasar)
-        // Basemap 1: OpenStreetMap (Default)
         const basemapOSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        // Basemap 2: ESRI World Imagery (Satelit)
         const basemapSatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
             maxZoom: 19,
             attribution: 'Tiles &copy; Esri'
         });
 
-        // Fungsi untuk mengganti basemap dari radio button di sidebar
         function changeBasemap(radio) {
             if (radio.value === 'osm') {
                 map.removeLayer(basemapSatellite);
@@ -329,11 +312,7 @@
             }
         }
 
-        // 3. PERSIAPAN DATA LAYER (DUMMY/SIMULASI)
-        // Karena data GeoJSON aslimu belum dimasukkan, kita gunakan poligon sederhana
-        // berwarna sebagai contoh/simulasi agar fungsi interaktifnya terlihat bekerja.
-
-        // Simulasi Zona Risiko Gempa (Merah transparan di area Utara/Sesar Lembang)
+        // 3. SIMULASI DATA LAYER
         const zonaGempa = L.circle([-6.8200, 107.6100], {
             color: '#D35D6E',
             fillColor: '#D35D6E',
@@ -341,7 +320,6 @@
             radius: 3500
         }).bindPopup("<b>Zona Risiko Gempa Tinggi</b><br>Kedekatan dengan Sesar Lembang.");
 
-        // Simulasi Zona Risiko Banjir (Biru transparan di area Selatan/Cekungan)
         const zonaBanjir = L.circle([-6.9600, 107.6300], {
             color: '#1A5276',
             fillColor: '#1A5276',
@@ -349,7 +327,6 @@
             radius: 4000
         }).bindPopup("<b>Zona Risiko Banjir Tinggi</b><br>Area Cekungan Bandung Selatan.");
 
-        // Simulasi Zona Risiko Longsor (Coklat/Oranye di lereng)
         const zonaLongsor = L.circle([-6.8600, 107.6800], {
             color: '#E2A76F',
             fillColor: '#E2A76F',
@@ -357,7 +334,7 @@
             radius: 2500
         }).bindPopup("<b>Zona Risiko Longsor</b><br>Kemiringan lereng curam & jenis tanah vulkanik.");
 
-        // 4. FUNGSI UNTUK MENGAKTIFKAN/MEMATIKAN LAYER DARI CHECKBOX SIDEBAR
+        // 4. FUNGSI CHECKBOX SIDEBAR
         function toggleLayer(jenis, isChecked) {
             let layerTarget;
 
@@ -366,24 +343,11 @@
             if (jenis === 'longsor') layerTarget = zonaLongsor;
 
             if (isChecked) {
-                // Jika dicentang, tambahkan layer ke peta
                 layerTarget.addTo(map);
             } else {
-                // Jika centang dihilangkan, hapus layer dari peta
                 map.removeLayer(layerTarget);
             }
         }
-
-        /* * PANDUAN UNTUKMU NANTI:
-         * Untuk memasukkan data aslimu (Shapefile yang diconvert ke GeoJSON), 
-         * kamu bisa menggunakan script Leaflet AJAX atau fetch API seperti ini:
-         * * fetch('data_persil_risiko.geojson')
-         * .then(response => response.json())
-         * .then(data => {
-         * const layerPersil = L.geoJSON(data, { style: fungsiStylingMu });
-         * // Masukkan layerPersil ini ke fungsi toggleLayer di atas
-         * });
-         */
     </script>
 </body>
 </html>
