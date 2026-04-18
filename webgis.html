@@ -31,10 +31,10 @@
 
         body {
             background-color: var(--beige);
-            height: 100vh; /* Agar peta memenuhi layar tanpa scroll berlebih */
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden; /* Mengunci scroll halaman utama */
+            overflow: hidden;
         }
 
         /* --- NAVBAR --- */
@@ -47,7 +47,7 @@
             padding: 0 5%;
             color: white;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            z-index: 1000; /* Z-index tinggi agar selalu di atas peta */
+            z-index: 1000;
         }
 
         .nav-left {
@@ -57,7 +57,6 @@
             cursor: pointer;
         }
 
-        /* Pengaturan ukuran logo gambar PNG */
         .logo-img {
             height: 55px;
             width: auto;
@@ -66,8 +65,8 @@
 
         .nav-title {
             font-size: 20px;
-            font-weight: 800; /* Dipertebal sedikit agar lebih tegas */
-            letter-spacing: 1px; /* Spasi antar huruf dilebarkan sedikit */
+            font-weight: 800;
+            letter-spacing: 1px;
         }
 
         .nav-links {
@@ -100,7 +99,7 @@
 
         /* --- WEBGIS LAYOUT --- */
         .webgis-wrapper {
-            flex: 1; /* Mengisi sisa tinggi layar di bawah navbar */
+            flex: 1;
             display: flex;
             height: calc(100vh - 90px);
         }
@@ -147,7 +146,6 @@
             padding-bottom: 8px;
         }
 
-        /* Styling Checkbox Custom */
         .layer-option {
             display: flex;
             align-items: center;
@@ -198,12 +196,11 @@
 
         /* --- AREA PETA UTAMA --- */
         #map {
-            flex: 1; /* Mengisi sisa lebar layar */
-            background-color: #e5e3df; /* Warna dasar abu peta */
+            flex: 1;
+            background-color: #e5e3df;
             z-index: 100;
         }
 
-        /* Kustomisasi kontrol zoom Leaflet agar sesuai tema */
         .leaflet-bar a {
             color: var(--brown) !important;
         }
@@ -250,7 +247,7 @@
                 <div class="control-group">
                     <h3>Peta Ancaman Multi-Hazard</h3>
                     <label class="layer-option">
-                        <input type="checkbox" id="layer-gempa" onchange="toggleLayer('gempa', this.checked)"> Risiko Gempa Bumi
+                        <input type="checkbox" id="layer-gempa" onchange="toggleLayer('gempa', this.checked)"> Risiko Gempa Bumi (QGIS)
                     </label>
                     <label class="layer-option">
                         <input type="checkbox" id="layer-banjir" onchange="toggleLayer('banjir', this.checked)"> Risiko Banjir
@@ -274,7 +271,7 @@
                         </div>
                     </div>
                     <p style="font-size: 12px; margin-top: 15px; color: #888;">
-                        *Resolusi tingkat persil (1:5.000). Data simulasi untuk pratinjau antarmuka.
+                        *Resolusi tingkat persil (1:5.000). Data spasial terintegrasi.
                     </p>
                 </div>
 
@@ -312,14 +309,19 @@
             }
         }
 
-        // 3. SIMULASI DATA LAYER
-        const zonaGempa = L.circle([-6.8200, 107.6100], {
-            color: '#D35D6E',
-            fillColor: '#D35D6E',
-            fillOpacity: 0.5,
-            radius: 3500
-        }).bindPopup("<b>Zona Risiko Gempa Tinggi</b><br>Kedekatan dengan Sesar Lembang.");
+        // 3. PEMANGGILAN DATA LAYER
+        
+        // PETA ASLI DARI QGIS (QTiles - Risiko Gempa Medium)
+        // Memanggil folder lokal 'risikogempamedium'
+        const zonaGempa = L.tileLayer('risikogempamedium/{z}/{x}/{y}.png', {
+            minZoom: 10, // Kamu bisa sesuaikan angka ini dengan zoom minimal saat export QGIS
+            maxZoom: 18, // Sesuaikan dengan zoom maksimal saat export
+            tms: false,
+            opacity: 0.8, // Mengatur transparansi layer (0.0 sampai 1.0)
+            errorTileUrl: 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==' // Mencegah error gambar 'broken' jika di-zoom melebihi batas
+        });
 
+        // (Simulasi sementara untuk Banjir - Ganti nanti jika kamu punya folder QTiles banjir)
         const zonaBanjir = L.circle([-6.9600, 107.6300], {
             color: '#1A5276',
             fillColor: '#1A5276',
@@ -327,6 +329,7 @@
             radius: 4000
         }).bindPopup("<b>Zona Risiko Banjir Tinggi</b><br>Area Cekungan Bandung Selatan.");
 
+        // (Simulasi sementara untuk Longsor - Ganti nanti jika kamu punya folder QTiles longsor)
         const zonaLongsor = L.circle([-6.8600, 107.6800], {
             color: '#E2A76F',
             fillColor: '#E2A76F',
